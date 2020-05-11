@@ -1,6 +1,7 @@
 import { Login } from './login';
-import { Main } from './main';
+import '../Scss/main.scss';
 
 Login.test();
-Main.test();
+
+
 

@@ -20,13 +20,22 @@ module.exports = {
                     options: {
                         presets: ["@babel/preset-env"]
                     }
-                },
-            }
+                }
+            },
+            {
+                test: /\.scss$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader'
+                ]
+              }
         ]
     },
     devServer: {
         port: 3200,
         index: 'index.html',
-        open: true
-    }
+        watchContentBase: true,
+        // contentBase: './index.html'
+    },
 };
