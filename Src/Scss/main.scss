@@ -4,8 +4,13 @@
 // Helpers
 @import './Helpers/variables';
 
+// Mixins
+@import './Helpers/mixins';
+
+
 //Components
-// @import './Components/'
+@import './Components/button';
+@import './Components/form';
 
 // Pages
 @import './Pages/index';
