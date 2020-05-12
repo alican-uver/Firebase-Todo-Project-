@@ -3,7 +3,7 @@
     text-transform: uppercase;
     padding: 10px 20px;
     background-color: $color-primary;
-    outline: none;
+    outline: 0 !important;
     border-radius: 7px;
     @include transition(all, 0.3, ease);
     &:hover{

@@ -4,9 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/dc0c634418.js" crossorigin="anonymous"></script>
+    <title>Login</title>
+
+<style>
+    body {
+        background-color: #95a5a6;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+</style>
 </head>
 <body>
+    <div class="form-container">
+        <form class="form" id="form">
+            <h2 class="form-title">Login</h2>
+            <div class="form-item">
+                <label for="email">Email</label>
+                <div class="input-box">
+                    <i class="far fa-envelope pr-2"></i>
+                    <input type="email" id="email" placeholder="Enter Your Email">
+                </div>
+                <small>error message</small>
+            </div>
+            <div class="form-item">
+                <label for="password">Password</label>
+                <div class="input-box">
+                    <i class="fa fa-key pr-2"></i>
+                    <input type="password" id="password" placeholder="Create a Password">
+                    <i class="far fa-eye-slash show-hidden-icon"></i>
+                </div>
+                <small>error message</small>
+            </div>
+            <button class="button" type="submit" id="submit">Login</button>
+        </form>
+        <div class="is-have-account text-center mt-5">
+            <h5 class="text-capitalize">Do you have an account?</h5>
+            <a href="register.html">Register</a>
+        </div>
+    </div>
+
+    <script src="../Src/javascript/Form Valid/checkForm.js"></script>
+    <script src="../bundles/bundle.js"></script>
     
 </body>
 </html>
