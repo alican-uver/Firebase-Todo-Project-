@@ -1,13 +1,16 @@
 .button{
+    display:block;
     width:100%;
     text-transform: uppercase;
+    text-align: center;
     padding: 10px 20px;
     background-color: $color-primary;
     outline: 0 !important;
     border-radius: 7px;
+    cursor:pointer;
     @include transition(all, 0.3, ease);
     &:hover{
-        color: $color-white;
+        color: $color-white !important;
         background-color: $color-black;
     }
 }

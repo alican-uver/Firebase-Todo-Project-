@@ -27,22 +27,21 @@
                 visibility: hidden;
             }
         }
-
     }
-}
-
-// İnput Box Eye Icons 
-.input-box{
-    border-bottom: 1px solid $color-primary;
-    .show-hidden-icon{
-        position: absolute;
-        right:0;
-        cursor:pointer;
-        &.show{
-            color: $color-primary;
+    // İnput Box Eye Icons 
+    .input-box{
+        border-bottom: 1px solid $color-primary;
+        .show-hidden-icon{
+            position: absolute;
+            right:0;
+            cursor:pointer;
+            &.show{
+                color: $color-primary;
+            }
         }
     }
 }
+
 
 // if have this class 
 .form-item.success .input-box{

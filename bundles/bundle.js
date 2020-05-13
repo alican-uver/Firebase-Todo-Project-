@@ -97,39 +97,27 @@ eval("var api = __webpack_require__(/*! ../../node_modules/style-loader/dist/run
 
 /***/ }),
 
-/***/ "./Src/javascript/index.js":
-/*!*********************************!*\
-  !*** ./Src/javascript/index.js ***!
-  \*********************************/
+/***/ "./Src/javascript/Modules/checkForm.js":
+/*!*********************************************!*\
+  !*** ./Src/javascript/Modules/checkForm.js ***!
+  \*********************************************/
+/*! exports provided: CheckForm */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"CheckForm\", function() { return CheckForm; });\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }\n\nfunction _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }\n\nvar CheckForm = /*#__PURE__*/function () {\n  function CheckForm() {\n    _classCallCheck(this, CheckForm);\n\n    this.icons = document.querySelectorAll(\".show-hidden-icon\");\n    this.email = document.getElementById(\"email\");\n    this.password = document.getElementById(\"password\");\n    this.password2 = document.getElementById(\"password2\");\n    this.loginButton = document.getElementById(\"login-button\");\n    this.registerButton = document.getElementById(\"register-button\");\n    this.init();\n  }\n\n  _createClass(CheckForm, [{\n    key: \"init\",\n    value: function init() {\n      this.showOrHidePassword();\n      this.formValid();\n    }\n  }, {\n    key: \"formValid\",\n    value: function formValid() {\n      var _this = this;\n\n      // For Register Page\n      if (this.registerButton) {\n        this.registerButton.addEventListener(\"click\", function () {\n          _this.checkRequired([_this.email, _this.password, _this.password2]);\n\n          _this.checkLength(_this.password, 6, 25);\n\n          _this.checkLength(_this.password2, 6, 25);\n\n          _this.checkEmail();\n\n          _this.checkPasswordsMatch();\n        });\n      } // For Login Page\n\n\n      if (this.loginButton) {\n        this.loginButton.addEventListener(\"click\", function () {\n          _this.checkLength(_this.password, 6, 25);\n\n          _this.checkEmail();\n        });\n      }\n    } // Check Empty inputs\n\n  }, {\n    key: \"checkRequired\",\n    value: function checkRequired(inputArr) {\n      var _this2 = this;\n\n      inputArr.forEach(function (input) {\n        input.value === \"\" ? _this2.showError(input, \"Bu alanlar boş bırakılamaz\") : _this2.showSuccess(input);\n      });\n    } // Check Length --Global--\n\n  }, {\n    key: \"checkLength\",\n    value: function checkLength(input, min, max) {\n      input.value.length < min && this.showError(input, \"\".concat(this.getFieldName(input), \" min \").concat(min, \" karakter i\\xE7ermelidir\"));\n      input.value.length > max && this.showError(input, \"\".concat(this.getFieldName(input), \" max \").concat(max, \" karakter i\\xE7ermelidir\"));\n    } // First Letter to Uppercase\n\n  }, {\n    key: \"getFieldName\",\n    value: function getFieldName(input) {\n      var id = input.id.charAt(0).toUpperCase() + input.id.slice(1);\n      return id;\n    } // Match passwords\n\n  }, {\n    key: \"checkPasswordsMatch\",\n    value: function checkPasswordsMatch() {\n      this.password.value !== this.password2.value && this.showError(this.password2, \"Passwords doesn't match!\");\n    } // Email valid\n\n  }, {\n    key: \"checkEmail\",\n    value: function checkEmail() {\n      var input = this.email;\n      var re = /^(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$/;\n      re.test(input.value.trim()) ? this.showSuccess : this.showError(input, \"Email not valid\");\n    } // --Global-- Success Message\n\n  }, {\n    key: \"showSuccess\",\n    value: function showSuccess(input) {\n      var formItem = input.parentElement.parentElement;\n      formItem.className = \"form-item success\";\n    } // --Global --Error Message\n\n  }, {\n    key: \"showError\",\n    value: function showError(input, errorMessage) {\n      var formItem = input.parentElement.parentElement;\n      formItem.className = \"form-item error\";\n      var small = formItem.querySelector(\"small\");\n      small.innerText = errorMessage;\n    } // Eye icon in the form\n\n  }, {\n    key: \"showOrHidePassword\",\n    value: function showOrHidePassword() {\n      this.icons.forEach(function (icon) {\n        icon.addEventListener(\"click\", function (e) {\n          var input = e.target.previousElementSibling;\n          input.type === \"password\" ? (input.type = \"text\", e.target.className = \"fa fa-eye show-hidden-icon show\") : (input.type = \"password\", e.target.className = \"fa fa-eye-slash show-hidden-icon\");\n        });\n      });\n    }\n  }]);\n\n  return CheckForm;\n}();\n\n//# sourceURL=webpack:///./Src/javascript/Modules/checkForm.js?");
+
+/***/ }),
+
+/***/ "./Src/javascript/Modules/index.js":
+/*!*****************************************!*\
+  !*** ./Src/javascript/Modules/index.js ***!
+  \*****************************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _login__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./login */ \"./Src/javascript/login.js\");\n/* harmony import */ var _main__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./main */ \"./Src/javascript/main.js\");\n/* harmony import */ var _Scss_main_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Scss/main.scss */ \"./Src/Scss/main.scss\");\n/* harmony import */ var _Scss_main_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_Scss_main_scss__WEBPACK_IMPORTED_MODULE_2__);\n\n\n\n_login__WEBPACK_IMPORTED_MODULE_0__[\"Login\"].test();\n_main__WEBPACK_IMPORTED_MODULE_1__[\"Main\"].test();\n_main__WEBPACK_IMPORTED_MODULE_1__[\"Main\"].test();\n\n//# sourceURL=webpack:///./Src/javascript/index.js?");
-
-/***/ }),
-
-/***/ "./Src/javascript/login.js":
-/*!*********************************!*\
-  !*** ./Src/javascript/login.js ***!
-  \*********************************/
-/*! exports provided: Login */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Login\", function() { return Login; });\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }\n\nfunction _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }\n\nvar Login = /*#__PURE__*/function () {\n  function Login() {\n    _classCallCheck(this, Login);\n  }\n\n  _createClass(Login, null, [{\n    key: \"test\",\n    value: function test() {\n      console.log(\"Login Static test\");\n      console.log(\"Login Static test2\");\n    }\n  }]);\n\n  return Login;\n}();\n\n//# sourceURL=webpack:///./Src/javascript/login.js?");
-
-/***/ }),
-
-/***/ "./Src/javascript/main.js":
-/*!********************************!*\
-  !*** ./Src/javascript/main.js ***!
-  \********************************/
-/*! exports provided: Main */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Main\", function() { return Main; });\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }\n\nfunction _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }\n\nvar Main = /*#__PURE__*/function () {\n  function Main() {\n    _classCallCheck(this, Main);\n  }\n\n  _createClass(Main, null, [{\n    key: \"test\",\n    value: function test() {\n      console.log(\"static test\");\n    }\n  }]);\n\n  return Main;\n}();\n\n//# sourceURL=webpack:///./Src/javascript/main.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _Scss_main_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Scss/main.scss */ \"./Src/Scss/main.scss\");\n/* harmony import */ var _Scss_main_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_Scss_main_scss__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _checkForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./checkForm */ \"./Src/javascript/Modules/checkForm.js\");\n\n\nwindow.addEventListener(\"load\", function () {\n  new _checkForm__WEBPACK_IMPORTED_MODULE_1__[\"CheckForm\"]();\n});\n\n//# sourceURL=webpack:///./Src/javascript/Modules/index.js?");
 
 /***/ }),
 
@@ -3596,7 +3584,7 @@ eval("__webpack_require__(/*! ../modules/web.timers */ \"./node_modules/core-js/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("// Imports\nvar ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\nexports = ___CSS_LOADER_API_IMPORT___(false);\n// Module\nexports.push([module.i, \".blue-h1 {\\n  color: red; }\\n\", \"\"]);\n// Exports\nmodule.exports = exports;\n\n\n//# sourceURL=webpack:///./Src/Scss/main.scss?./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js");
+eval("// Imports\nvar ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\nexports = ___CSS_LOADER_API_IMPORT___(false);\n// Module\nexports.push([module.i, \"* {\\n  padding: 0;\\n  margin: 0;\\n  box-sizing: border-box; }\\n\\n::placeholder {\\n  color: #bdc3c7; }\\n\\n.button {\\n  display: block;\\n  width: 100%;\\n  text-transform: uppercase;\\n  text-align: center;\\n  padding: 10px 20px;\\n  background-color: #3498db;\\n  outline: 0 !important;\\n  border-radius: 7px;\\n  cursor: pointer;\\n  transition-property: all;\\n  transition-duration: 0.3s;\\n  transition-timing-function: ease; }\\n  .button:hover {\\n    color: #fff !important;\\n    background-color: #000; }\\n\\n.form-container {\\n  background-color: #fff;\\n  border-radius: 10px;\\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);\\n  width: 450px;\\n  padding: 20px; }\\n  .form-container .form-title {\\n    text-align: center;\\n    padding: 20px 0; }\\n  .form-container .form-item {\\n    position: relative;\\n    margin: 30px 0;\\n    display: flex;\\n    flex-direction: column; }\\n    .form-container .form-item label {\\n      font-size: 12px; }\\n    .form-container .form-item input {\\n      border: 0;\\n      outline: none;\\n      font-size: 14px;\\n      width: 90%; }\\n    .form-container .form-item small {\\n      visibility: hidden; }\\n\\n.input-box {\\n  border-bottom: 1px solid #3498db; }\\n  .input-box .show-hidden-icon {\\n    position: absolute;\\n    right: 0;\\n    cursor: pointer; }\\n    .input-box .show-hidden-icon.show {\\n      color: #3498db; }\\n\\n.form-item.success .input-box {\\n  border-color: #2ecc71; }\\n\\n.form-item.error .input-box {\\n  border-color: #c0392b; }\\n\\n.form-item.error small {\\n  visibility: visible;\\n  color: #c0392b; }\\n\", \"\"]);\n// Exports\nmodule.exports = exports;\n\n\n//# sourceURL=webpack:///./Src/Scss/main.scss?./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js");
 
 /***/ }),
 
@@ -3636,13 +3624,13 @@ eval("\n\nvar isOldIE = function isOldIE() {\n  var memo;\n  return function mem
 /***/ }),
 
 /***/ 0:
-/*!*******************************************************!*\
-  !*** multi @babel/polyfill ./Src/javascript/index.js ***!
-  \*******************************************************/
+/*!***************************************************************!*\
+  !*** multi @babel/polyfill ./Src/javascript/Modules/index.js ***!
+  \***************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("__webpack_require__(/*! @babel/polyfill */\"./node_modules/@babel/polyfill/lib/index.js\");\nmodule.exports = __webpack_require__(/*! ./Src/javascript/index.js */\"./Src/javascript/index.js\");\n\n\n//# sourceURL=webpack:///multi_@babel/polyfill_./Src/javascript/index.js?");
+eval("__webpack_require__(/*! @babel/polyfill */\"./node_modules/@babel/polyfill/lib/index.js\");\nmodule.exports = __webpack_require__(/*! ./Src/javascript/Modules/index.js */\"./Src/javascript/Modules/index.js\");\n\n\n//# sourceURL=webpack:///multi_@babel/polyfill_./Src/javascript/Modules/index.js?");
 
 /***/ })
 
