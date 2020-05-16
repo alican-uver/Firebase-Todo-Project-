@@ -4,10 +4,8 @@
   "description": "firebase todo project ",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --output-public-path=/bundles/  --mode development --open --hot",
-    "build": "webpack --progress",
-    "watch": "webpack --watch"
+    "start": "webpack-dev-server --mode development --open --hot",
+    "build": "webpack --progress"
   },
   "keywords": [
     "firebase",
@@ -27,6 +25,7 @@
   },
   "devDependencies": {
     "css-loader": "^3.5.3",
+    "html-webpack-plugin": "^4.3.0",
     "node-sass": "^4.14.1",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.2.1",

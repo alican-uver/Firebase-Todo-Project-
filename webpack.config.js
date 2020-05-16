@@ -1,11 +1,16 @@
 var path = require('path');
 var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: ["@babel/polyfill", "./Src/javascript/Modules/index.js"],
+    entry: {
+      index: ["@babel/polyfill", "./Src/javascript/Modules/index.js"],
+      register: ["./Src/javascript/Modules/register.js"],
+      login: ["./Src/javascript/Modules/login.js"]
+    },
     output: {
-        path: path.resolve(__dirname, 'bundles'),
-        filename: 'bundle.js'
+        path: path.resolve(__dirname, 'dist'),
+        filename: '[name].bundle.js'
     },
 
     mode: "development",
@@ -32,10 +37,28 @@ module.exports = {
               }
         ]
     },
+
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './Src/Pages/index.html',
+            filename: 'index.html',
+            chunks: ["index"]
+        }),
+        new HtmlWebpackPlugin({
+            template: './Src/Pages/register.html',
+            filename: 'register.html',
+            chunks: ["register"]
+        }),
+        new HtmlWebpackPlugin({
+            template: './Src/Pages/login.html',
+            filename: 'login.html',
+            chunks: ["login"]
+        }),
+    ],
     devServer: {
         port: 3200,
-        index: 'index.html',
+        contentBase: path.resolve(__dirname, './Src/Javascript/Modules'),
+        compress: true,
         watchContentBase: true,
-        // contentBase: './index.html'
     },
 };

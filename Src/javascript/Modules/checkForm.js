@@ -1,3 +1,4 @@
+
 export class CheckForm {
     constructor() {
         this.icons = document.querySelectorAll(".show-hidden-icon");
@@ -92,4 +93,5 @@ export class CheckForm {
             });
         });
     }
+
 }

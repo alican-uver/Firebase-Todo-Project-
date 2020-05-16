@@ -1,5 +1,6 @@
-export class Login {
-    static test() {
-        console.log("Login Static test")
-    }
-}
+import '../../Scss/main.scss';
+import { CheckForm } from './checkForm';
+
+window.addEventListener("load", () => {
+    new CheckForm();
+});
