@@ -1,13 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/dc0c634418.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>Document</title>
 </head>
-<body>
-        <a href="register.html">Üye ol</a>
-        This is Index Html 
+
+<body style="background-color: #E8E5DF;">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html">Firebase Todo App</a>
+        <a class="text-white">User: email@email.com</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="login.html">Sign Out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- Todo Form -->
+    <div class="todo-container">
+        <div class="todo-up">
+            <h5 class="todo-up-title"> things to do</h5>
+            <div class="todo-up-icon">
+                <i class="fas fa-plus" id="add-todo"></i>
+            </div>
+        </div>
+        <div class="todo-center">
+            <div class="todo-center-action todo-item">
+                <label for="select-action">Action</label>
+                <select id="select-action">
+                    <option>Select an action</option>
+                    <option value="work">Work</option>
+                    <option value="sport">Sport</option>
+                    <option value="music">Music</option>
+                    <option value="shopping">Shopping</option>
+                </select>
+            </div>
+            <div class="todo-center-title todo-item">
+                <label for="todo-title">Title</label>
+                <input type="text" id="todo-title" placeholder="Write a title..">
+            </div>
+            <div class="todo-center-date todo-item">
+                <label for="select-date">Date</label>
+                <select id="select-date">
+                    <option>Select a date</option>
+                    <option value="today">Today</option>
+                    <option value="tomorrow">Tomorrow</option>
+                </select>
+            </div>
+            <div class="todo-center-description">
+                <label for="todo-description">Description</label>
+                <input type="text" id="todo-description" placeholder="Write a description..">
+            </div>
+            <a class="todo-center-button" id="add-todo-button">add</a>
+        </div>
+        <div class="todo-bottom">
+            <div class="todo-bottom-item">
+                <p class="todo-action" id="todo-action">Work</p>
+                <div class="todoTitleAndDescription">
+                    <p class="todo-title" id="todo-title">WorkShop</p>
+                    <small class="text-muted" id="todo-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda esse nam similique doloremque totam eum quasi velit dolorum quae nobis.</small>
+                </div>
+                <p class="todo-date" id="todo-date">Tomorrow</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Todo Form End -->
+
+    <!-- Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
 </body>
+
 </html>

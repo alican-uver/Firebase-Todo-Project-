@@ -1,0 +1,112 @@
+.todo-container {
+    width: 800px;
+    margin: 20px auto;
+    .todo-up{
+        color: $color-white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: $material-blue;
+        &-title{
+            text-transform: uppercase;
+            font-size: 1.8rem;
+            padding-left: 10px;
+        }
+        &-icon{
+            background-color: $color-primary;
+            padding: 22px;
+            i{
+                cursor: pointer;
+                font-size: 25px;
+                transition: .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                &.clicked{
+                    transform: rotate(135deg);
+                }
+            }
+        }
+    }
+
+    .todo-center{
+        @include flexCenter();
+        flex-wrap: wrap;
+        width: 600px;
+        margin:20px auto;
+        select{
+            -webkit-appearance: none;
+            padding: 3px;
+            border-radius: 0;
+            outline: 0;
+            font-size: 14px;
+            border-color: $color-primary;
+            background-color: transparent;
+        }
+
+        label{
+            font-style: italic;
+        }
+
+        input{
+            border:0;
+            border-bottom: 1px solid $color-primary;
+            outline: 0;
+            background-color: transparent;
+        }
+
+        .todo-item{
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            width: 30%;
+            padding-right: 20px;
+        }
+
+        &-description{
+            width: 100%;
+            text-align:center;
+            display: flex;
+            flex-direction: column;
+            margin: 20px 0;
+        }   
+
+        &-button{
+            background-color: $color-primary;
+            padding: 10px 30px;
+            color: $color-white;
+            font-size: 14px;
+            text-transform: capitalize;
+            transition: .3s ease background-color;
+            &:hover{
+                cursor: pointer;
+                background-color: $material-blue;
+            }
+        }
+    }
+
+    .todo-bottom{
+        margin-top: 50px;
+        width: 100%;
+        &-item{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: $color-white;
+            border-radius: 5px;
+            box-shadow: $box-shadow;
+            padding: 5px 10px;
+            text-align:left;
+            border-left: 7px solid red;
+            text-align: center;
+            .todoTitleAndDescription{
+                display: flex;
+                flex-direction: column;
+                width: 70%;
+            }
+            .todo-action {
+                color:red;
+                font-weight: bold;
+                font-size: 18px;
+            }
+        }
+        
+    }
+}

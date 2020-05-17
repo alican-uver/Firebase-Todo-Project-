@@ -1,12 +1,5 @@
-// import '../../Scss/main.scss';
-// import { CheckForm } from './checkForm';
-// import { RegisterFirebase } from './register';
-// import { Login } from './login';
+import '../../Scss/main.scss';
 
-// window.addEventListener("load", () => {
-//     new CheckForm();
-//     new RegisterFirebase();
-//     new Login();
-// })
-
-console.log("This is index html page");
+const addTodoIcon = document.getElementById("add-todo").addEventListener("click", function(){
+    this.classList.toggle("clicked");
+})

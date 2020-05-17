@@ -7,3 +7,5 @@ window.addEventListener("load", () => {
     new CheckForm();
     new RegisterFirebase(firebaseConfig);
 });
+
+
