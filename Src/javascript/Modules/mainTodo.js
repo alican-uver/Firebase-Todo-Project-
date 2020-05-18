@@ -5,7 +5,6 @@ export class MainTodo {
         this.detailTodo = document.getElementById("detail-todo");
         this.addTodo = document.getElementById("add-todo");
         this.editTodo = document.getElementById("edit-todo");
-        this.deleteTodo = document.getElementById("delete-todo");
         this.logoutButton = document.getElementById("logout-button");
 
         // UI Elements
@@ -27,7 +26,6 @@ export class MainTodo {
 
     init() {
         this.showDetailTodo();
-        this.getDetailValues();
         this.checkUserLogin();
     }
 
@@ -39,21 +37,7 @@ export class MainTodo {
         })
     }
 
-    getDetailValues() {
-        this.addTodo.addEventListener("click", () => {
-            const inputTitle = this.inputTitle.value;
-            const inputDescription = this.inputDescription.value;
-            const selectAction = this.selectAction.value;
-            const selectDate = this.selectDate.value;
-
-            // If all inputs are not empty 
-            if (this.checkInputEmpty()) {
-            this.addTodoToUI(inputTitle, inputDescription, selectAction, selectDate)
-            };
-        })
-    }
-
-    addTodoToUI(title, description, action, date) {
+    addTodoToUI(title, description, action, date, todoKey) {
         this.todoBottom.innerHTML += `
         <div class="todo-item mt-2">
             <p class="todo-item-action" id="todo-action">${action}</p>
@@ -63,7 +47,7 @@ export class MainTodo {
             </div>
             <p class="todo-item-date" id="todo-date">${date}</p>
             <div class="todo-item-icons">
-                <i class="far fa-trash-alt" id="delete-todo"></i>
+                <i class="far fa-trash-alt delete-todo" data-key=${todoKey}></i>
                 <i class="far fa-edit" id="edit-todo"></i>
             </div>
         </div>
@@ -76,6 +60,12 @@ export class MainTodo {
         }
     }
 
+    clearInputs(){
+        this.inputTitle.value = "";
+        this.inputDescription.value = "";
+        this.todoBottom.innerHTML = "";
+    }
+
     // Firebase Functions 
     checkUserLogin() {
         firebase.auth().onAuthStateChanged((user) => { //whatever user we logged in with, that user's information will come in.
@@ -84,15 +74,40 @@ export class MainTodo {
                 this.navbarEmail.innerHTML = `User: ${user.email}`;
                 this.logoutFirebase();
                 this.addTodosToFirebase();
+                this.getTodosToFirebase();
             }
         })
     }
 
+    deleteTodoFromFirebase(){
+        const deleteTodoButtons = document.querySelectorAll(".delete-todo");
+        deleteTodoButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                let todoKey = button.dataset.key;
+                firebase.database().ref(`users/${this.currentUser}`).child("todos").child(todoKey).remove();
+            })
+        });
+    }
+
+    getTodosToFirebase(){
+        let todoRef = firebase.database().ref("users/" + this.currentUser).child("todos");
+        todoRef.on("value", snapShot => {
+            this.clearInputs(); // This functions clear all inputs and todocontainer
+            snapShot.forEach(item => {
+                let todoKey = item.key;
+                this.todoKey = item.key;
+                this.addTodoToUI(item.val().title, item.val().description, item.val().action, item.val().date, todoKey)            
+            });
+            //this function should work here, because we can select the button after the html is dynamically generated
+            this.deleteTodoFromFirebase();
+        })
+    }
 
     addTodosToFirebase() {
         this.addTodo.addEventListener("click", () => {
             if (this.checkInputEmpty()) {
                 firebase.database().ref("/users").child(this.currentUser).child("todos").push({
+                    // Created object format 
                     action: this.selectAction.value,
                     date: this.selectDate.value,
                     title: this.inputTitle.value,

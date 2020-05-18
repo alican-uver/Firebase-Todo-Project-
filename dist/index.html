@@ -13,11 +13,11 @@
     <title>Document</title>
 </head>
 
-<body>
+<body style="background-color: #E8E5DF;">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="index.html">Firebase Todo App</a>
-        <a class="text-white">User: email@email.com</a>
+        <a class="text-white" id="navbar-email">User: email@email.com</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -25,7 +25,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="login.html">Sign Out</a>
+                    <a class="nav-link" id="logout-button" href="login.html">Sign Out</a>
                 </li>
             </ul>
         </div>
@@ -37,11 +37,52 @@
         <div class="todo-up">
             <h5 class="todo-up-title"> things to do</h5>
             <div class="todo-up-icon">
-                <i class="fas fa-plus"></i>
+                <i class="fas fa-plus" id="detail-todo"></i>
             </div>
         </div>
-        <div class="todo-center"></div>
-        <div class="todo-bottom"></div>
+        <div class="todo-center">
+            <div class="todo-center-action todo-item">
+                <label for="select-action">Action</label>
+                <select id="select-action">
+                    <!-- <option>Select an action</option> -->
+                    <option value="work">Work</option>
+                    <option value="sport">Sport</option>
+                    <option value="music">Music</option>
+                    <option value="shopping">Shopping</option>
+                </select>
+            </div>
+            <div class="todo-center-title todo-item">
+                <label for="todo-title">Title</label>
+                <input type="text" id="todo-title" placeholder="Write a title..">
+            </div>
+            <div class="todo-center-date todo-item">
+                <label for="select-date">Date</label>
+                <select id="select-date">
+                    <!-- <option>Select a date</option> -->
+                    <option value="today">Today</option>
+                    <option value="tomorrow">Tomorrow</option>
+                </select>
+            </div>
+            <div class="todo-center-description">
+                <label for="todo-description">Description</label>
+                <input type="text" id="todo-description" placeholder="Write a description..">
+            </div>
+            <a class="todo-center-button" id="add-todo">add</a>
+        </div>
+        <div class="todo-bottom">
+            <!-- <div class="todo-item">
+                <p class="todo-item-action" id="todo-action">Work</p>
+                <div class="todoTitleAndDescription">
+                    <p class="todo-item-title" id="todo-title">WorkShop</p>
+                    <small class="text-muted" id="todo-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda esse nam similique doloremque totam eum quasi velit dolorum quae nobis.</small>
+                </div>
+                <p class="todo-item-date" id="todo-date">Tomorrow</p>
+                <div class="todo-item-icons">
+                    <i class="far fa-trash-alt" id="delete-todo"></i>
+                    <i class="far fa-edit" id="edit-todo"></i>
+                </div>
+            </div> -->
+        </div>
     </div>
 
     <!-- Todo Form End -->
@@ -56,6 +97,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
 
 <script src="index.bundle.js"></script></body>
 
