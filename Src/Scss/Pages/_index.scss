@@ -79,9 +79,14 @@
             font-size: 14px;
             text-transform: capitalize;
             transition: .3s ease background-color;
+            min-width: 150px;
+            text-align: center;
             &:hover{
                 cursor: pointer;
                 background-color: $material-blue;
+            }
+            &.active{
+                display: none;
             }
         }
     }
