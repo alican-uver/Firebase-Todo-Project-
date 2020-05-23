@@ -2,10 +2,9 @@ export class MainTodo {
     constructor(config) {
         //! Select Elements
         //Buttons
-        this.detailTodo = document.getElementById("detail-todo");
-        this.addTodo = document.getElementById("add-todo");
-        this.updateTodo = document.getElementById("update-todo");
-        this.editTodo = document.getElementById("edit-todo");
+        this.showInputsButton = document.getElementById("detail-todo");
+        this.addTodoButton = document.getElementById("add-todo");
+        this.updateTodoButton = document.getElementById("update-todo");
         this.logoutButton = document.getElementById("logout-button");
 
         // UI Elements
@@ -28,27 +27,27 @@ export class MainTodo {
     }
 
     init() {
-        this.showDetailTodo();
+        this.showInputs();
         this.checkUserLogin();
     }
 
     // UI Functions
-    showDetailTodo() {
-        this.detailTodo.addEventListener("click", () => {
+    showInputs() {
+        this.showInputsButton.addEventListener("click", () => {
             this.todoDetails.classList.toggle("active");
-            this.detailTodo.classList.toggle("clicked");
+            this.showInputsButton.classList.toggle("clicked");
         })
     }
 
     addTodoToUI(title, description, action, date, todoKey) {
         this.todoBottom.innerHTML += `
         <div class="todo-item mt-2">
-            <p class="todo-item-action" id="todo-action">${action}</p>
+            <p class="todo-item-action text-capitalize" id="todo-action">${action}</p>
             <div class="todoTitleAndDescription">
                 <p class="todo-item-title" id="todo-title">${title}</p>
-                <small class="text-muted" id="todo-description">${description}</small>
+                <small id="todo-description">${description}</small>
             </div>
-            <p class="todo-item-date" id="todo-date">${date}</p>
+            <p class="todo-item-date text-capitalize" id="todo-date">${date}</p>
             <div class="todo-item-icons">
                 <i class="far fa-trash-alt delete-todo" data-key=${todoKey}></i>
                 <i class="far fa-edit update-todo" data-update=${todoKey}></i>
@@ -80,6 +79,9 @@ export class MainTodo {
                 this.addTodosToFirebase();
                 this.getAllTodosFromFirebase();
             }
+            else {
+                window.location.href = "register.html";
+            }
         })
     }
 
@@ -99,8 +101,8 @@ export class MainTodo {
         this.selectDate.value = todo.date;
         this.inputDescription.value = todo.description;
         this.todoDetails.classList.add("active"); // Open the details bar
-        this.addTodo.classList.add("active");
-        this.updateTodo.classList.remove("active");      
+        this.addTodoButton.classList.add("active"); // 
+        this.updateTodoButton.classList.remove("active");
     }
 
 
@@ -112,10 +114,12 @@ export class MainTodo {
               title: this.inputTitle.value,
               description: this.inputDescription.value
             }).then(() => {
-              this.updateTodo.removeEventListener("click", listener);
+                this.updateTodoButton.removeEventListener("click", listener);
+                this.updateTodoButton.classList.add("active");
+                this.addTodoButton.classList.remove("active");
             });
           }
-          this.updateTodo.addEventListener("click", listener);
+          this.updateTodoButton.addEventListener("click", listener);
     }
     
     updateTodoFromFirebase() {
@@ -154,7 +158,7 @@ export class MainTodo {
     }
 
     addTodosToFirebase() {
-        this.addTodo.addEventListener("click", () => {
+        this.addTodoButton.addEventListener("click", () => {
             if (this.checkInputEmpty()) {
                 firebase.database().ref("/users").child(this.currentUser).child("todos").push({
                     // Created object format 
