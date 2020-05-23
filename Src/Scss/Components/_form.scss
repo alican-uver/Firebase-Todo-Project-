@@ -1,5 +1,5 @@
 .form-container{
-    background-color: #fff;
+    background-color: $color-white;
     border-radius: 10px;
     box-shadow: $box-shadow;
     width: 450px;    
@@ -25,6 +25,9 @@
             }
             small{
                 visibility: hidden;
+            }
+            i{
+                color:$color-navyBlue;
             }
         }
     }

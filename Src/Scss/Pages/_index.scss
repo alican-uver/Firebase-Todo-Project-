@@ -1,19 +1,19 @@
 .todo-container {
-    width: 800px;
+    width: 60%;
     margin: 20px auto;
     .todo-up{
-        color: $color-white;
+        color: $color-navyBlue;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background: $material-blue;
+        background: $color-green;
         &-title{
             text-transform: uppercase;
             font-size: 1.8rem;
             padding-left: 10px;
         }
         &-icon{
-            background-color: $color-primary;
+            background-color: #4b4b4b;
             padding: 22px;
             i{
                 cursor: pointer;
@@ -29,51 +29,52 @@
     .todo-center{
         @include flexCenter();
         flex-wrap: wrap;
-        width: 600px;
+        width: 80%;
         margin:20px auto;
         display: none;
+        text-align: center;
         &.active{
             display: flex;
         }
         select{
-            -webkit-appearance: none;
             padding: 3px;
             border-radius: 0;
             outline: 0;
             font-size: 14px;
-            border-color: $color-primary;
+            border-color: $color-twinkleBlue;
             background-color: transparent;
+            color: $color-white;
         }
 
         label{
             font-style: italic;
+            color: $color-red;
         }
 
         input{
             border:0;
-            border-bottom: 1px solid $color-primary;
+            border-bottom: 1px solid $color-twinkleBlue;
             outline: 0;
             background-color: transparent;
+            color:$color-white
         }
 
         .todo-item{
             display: flex;
             flex-direction: column;
-            text-align: center;
             width: 30%;
             padding-right: 20px;
         }
 
         &-description{
             width: 100%;
-            text-align:center;
             display: flex;
             flex-direction: column;
             margin: 20px 0;
         }   
 
         &-button{
-            background-color: $color-primary;
+            background-color: $color-red;
             padding: 10px 30px;
             color: $color-white;
             font-size: 14px;
@@ -83,7 +84,7 @@
             text-align: center;
             &:hover{
                 cursor: pointer;
-                background-color: $material-blue;
+                background-color: $color-twinkleBlue;
             }
             &.active{
                 display: none;
@@ -97,17 +98,21 @@
         .todo-item{
             position: relative;
             display: flex;
-            align-items: center;
+            align-items: flex-end;
             justify-content: space-between;
-            background-color: $color-white;
+            background-color: $color-green;
             border-radius: 5px;
             box-shadow: $box-shadow;
             padding: 5px 10px;
-            text-align:left;
-            border-left: 7px solid red;
+            border-left: 7px solid $color-red;
             text-align: center;
             &-action {
-                color:red;
+                color:$color-red;
+                font-weight: bold;
+                font-size: 18px;
+            }
+            &-date{
+                color:$color-red;
                 font-weight: bold;
                 font-size: 18px;
             }
@@ -118,24 +123,33 @@
                 right:0;
                 width: 100%;
                 height: 100%;
-                background-color: $material-blue;
-                opacity: .9;
+                background-color: $color-twinkleBlue;
+                opacity: .8;
                 display: flex;
                 align-items: center;
                 justify-content: space-evenly;
                 visibility: hidden;
                 i{
                     font-size: 25px;
+                    color:$color-navyBlue;
                     &:hover{
                         cursor: pointer;
-                        color:$color-white;
+                        color:$color-green;
                     }
                 }
             }
             .todoTitleAndDescription{
                 display: flex;
                 flex-direction: column;
-                width: 70%;
+
+                p{
+                    text-transform: capitalize;
+                    color: $color-twinkleBlue;
+
+                }
+                small{
+                    color:$color-navyBlue;
+                }
             }
         }
         
