@@ -65,7 +65,6 @@ export class MainTodo {
     clearInputs(){
         this.inputTitle.value = "";
         this.inputDescription.value = "";
-        this.todoBottom.innerHTML = "";
     }
     // UI Functions End
 
@@ -116,7 +115,8 @@ export class MainTodo {
             }).then(() => {
                 this.updateTodoButton.removeEventListener("click", listener);
                 this.updateTodoButton.classList.add("active");
-                this.addTodoButton.classList.remove("active");
+                this.addTodoButton.classList.remove("active");  
+                this.clearInputs();              
             });
           }
           this.updateTodoButton.addEventListener("click", listener);
@@ -146,7 +146,8 @@ export class MainTodo {
     getAllTodosFromFirebase(){
         let todoRef = firebase.database().ref("users/" + this.currentUser).child("todos");
         todoRef.on("value", snapShot => {
-            this.clearInputs(); // This functions clear all inputs and todocontainer
+            this.clearInputs(); // This functions clear all inputs
+            this.todoBottom.innerHTML = "";
             snapShot.forEach(item => {
                 let todoKey = item.key;
                 this.addTodoToUI(item.val().title, item.val().description, item.val().action, item.val().date, todoKey)            

@@ -17,7 +17,7 @@
             padding: 22px;
             i{
                 cursor: pointer;
-                font-size: 25px;
+                font-size: 1.8rem;
                 transition: .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
                 &.clicked{
                     transform: rotate(135deg);
@@ -36,11 +36,12 @@
         &.active{
             display: flex;
         }
+
         select{
             padding: 3px;
             border-radius: 0;
             outline: 0;
-            font-size: 14px;
+            font-size: .9rem;
             border-color: $color-twinkleBlue;
             background-color: transparent;
             color: $color-white;
@@ -56,7 +57,7 @@
             border-bottom: 1px solid $color-twinkleBlue;
             outline: 0;
             background-color: transparent;
-            color:$color-white
+            color:$color-white;
         }
 
         .todo-item{
@@ -98,23 +99,25 @@
         .todo-item{
             position: relative;
             display: flex;
-            align-items: flex-end;
+            align-items: center;
             justify-content: space-between;
             background-color: $color-green;
             border-radius: 5px;
             box-shadow: $box-shadow;
             padding: 5px 10px;
             border-left: 7px solid $color-red;
-            text-align: center;
             &-action {
                 color:$color-red;
                 font-weight: bold;
-                font-size: 18px;
+                font-size: 1.1rem;
+                flex-basis: 100px;
             }
             &-date{
                 color:$color-red;
                 font-weight: bold;
-                font-size: 18px;
+                font-size: 1.1rem;
+                flex-basis: 100px;
+                text-align: right;
             }
             // Edit and Delete Todos Icons
             &-icons{
@@ -130,7 +133,7 @@
                 justify-content: space-evenly;
                 visibility: hidden;
                 i{
-                    font-size: 25px;
+                    font-size: 1.56rem;
                     color:$color-navyBlue;
                     &:hover{
                         cursor: pointer;
@@ -140,15 +143,22 @@
             }
             .todoTitleAndDescription{
                 display: flex;
-                flex-direction: column;
-
+                flex-flow: column wrap;
+                flex-basis: 600px;
+                align-items: center;
+                text-align: center;
                 p{
                     text-transform: capitalize;
                     color: $color-twinkleBlue;
-
+                    font-size: 1.1rem;
+                    margin-bottom: 3px;
                 }
                 small{
                     color:$color-navyBlue;
+                    font-size: 0.9rem;
+                    &::first-letter{
+                        text-transform: uppercase;
+                    }
                 }
             }
         }
