@@ -4,9 +4,9 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
-      index: ["@babel/polyfill", "./Src/javascript/Modules/index.js"],
-      register: ["./Src/javascript/Modules/register.js"],
-      login: ["./Src/javascript/Modules/login.js"]
+      index: ["@babel/polyfill", "./src/javascript/Modules/index.js"],
+      register: ["./src/javascript/Modules/register.js"],
+      login: ["./src/javascript/Modules/login.js"]
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -40,24 +40,24 @@ module.exports = {
 
     plugins: [
         new HtmlWebpackPlugin({
-            template: './Src/Pages/index.html',
+            template: './public/index.html',
             filename: 'index.html',
             chunks: ["index"]
         }),
         new HtmlWebpackPlugin({
-            template: './Src/Pages/register.html',
+            template: './public/register.html',
             filename: 'register.html',
             chunks: ["register"]
         }),
         new HtmlWebpackPlugin({
-            template: './Src/Pages/login.html',
+            template: './public/login.html',
             filename: 'login.html',
             chunks: ["login"]
         }),
     ],
     devServer: {
         port: 3200,
-        contentBase: path.resolve(__dirname, './Src/Javascript/Modules'),
+        contentBase: path.resolve(__dirname, './src/Javascript/Modules'),
         compress: true,
         watchContentBase: true,
     },

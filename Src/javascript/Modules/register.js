@@ -1,4 +1,4 @@
-import '../../Scss/main.scss';
+import '../../scss/main.scss';
 import { firebaseConfig } from '../firebaseConfig/config';
 import { CheckForm } from './checkForm';
 import { RegisterFirebase } from "./registerFirebase";
