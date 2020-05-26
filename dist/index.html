@@ -10,13 +10,15 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>Document</title>
+    <!--Animate Css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+    <title>Things To Do ! </title>
 </head>
 
-<body style="background-color: #E8E5DF;">
+<body style="background-color: #130f40;">
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="index.html">Firebase Todo App</a>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #00b894;">
+        <a class="navbar-brand" href="index.html" style="color: #c23616;">Firebase Todo App</a>
         <a class="text-white" id="navbar-email">User: email@email.com</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,6 +70,7 @@
                 <input type="text" id="todo-description" placeholder="Write a description..">
             </div>
             <a class="todo-center-button" id="add-todo">add</a>
+            <a class="todo-center-button active bg-warning" id="update-todo">update</a>
         </div>
         <div class="todo-bottom">
             <!-- <div class="todo-item">
