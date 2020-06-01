@@ -17,7 +17,7 @@ export class MainTodo {
         this.selectDate = document.getElementById("select-date");
         this.inputTitle = document.getElementById("todo-title");
         this.inputDescription = document.getElementById("todo-description");
-        
+
         //Firebase 
         this.config = firebase.initializeApp(config);
         this.currentUser = "";
@@ -31,13 +31,39 @@ export class MainTodo {
         this.checkUserLogin();
     }
 
+
+    animateCSS(element, animation, prefix = 'animate__') {
+        const animationName = `${prefix}${animation}`;
+        element.classList.add(`${prefix}animated`, animationName);
+
+        function handleAnimationEnd() {
+            element.classList.remove(`${prefix}animated`, animationName);
+            element.removeEventListener('animationend', handleAnimationEnd);
+        }
+
+        element.addEventListener('animationend', handleAnimationEnd);
+    }
+
+    showAlerts(type, message) {
+        const alertDiv = document.querySelector(".alert");
+        const span = document.createElement("span");
+        span.className = `bg-${type}`
+        span.innerText = message;
+        alertDiv.appendChild(span);
+        alertDiv.classList.remove("show");
+        setTimeout(() => {
+            alertDiv.classList.add("show");
+            alertDiv.innerHTML = "";
+        }, 1500);
+    }
+
     // UI Functions
     showInputs() {
         this.showInputsButton.addEventListener("click", () => {
             this.todoDetails.classList.toggle("active");
             this.showInputsButton.classList.toggle("clicked");
+            this.animateCSS(this.todoDetails, 'backInRight')
         })
-        this.todoDetails.classList.add('animate__animated', 'animate__backInRight');
     }
 
     addTodoToUI(title, description, action, date, todoKey) {
@@ -58,12 +84,19 @@ export class MainTodo {
     }
 
     checkInputEmpty() {
-        if (this.inputTitle.value !== "" && this.inputDescription.value !== "") {
+        if (this.inputTitle.value !== "" &&
+            this.inputDescription.value !== "" &&
+            this.selectAction.value !== "" &&
+            this.selectDate.value !== "") {
             return true;
+        }
+        else {
+            this.animateCSS(this.todoDetails, 'shakeX')
+            this.showAlerts("danger", "do not empty")
         }
     }
 
-    clearInputs(){
+    clearInputs() {
         this.inputTitle.value = "";
         this.inputDescription.value = "";
     }
@@ -87,40 +120,43 @@ export class MainTodo {
 
     //! function to capture todo on firebase by pressing update button
     getTodoFromFirebase(todoKey) {
-     let todoRef = firebase.database().ref(`users/${this.currentUser}`).child("todos").child(todoKey)
-        // console.log(todoRef)
-      todoRef.once("value", snapShot => {
+        let todoRef = firebase.database().ref(`users/${this.currentUser}`).child("todos").child(todoKey)
+        todoRef.once("value", snapShot => {
             console.log(snapShot.val())
             this.addAndUpdateDetailsBar(snapShot.val())
         })
     }
-    
+
     //! pressing the update button will display the "todo.value" on the firebase
-    addAndUpdateDetailsBar(todo) {
+    addAndUpdateDetailsBar(todo) {
         this.selectAction.value = todo.action;
         this.inputTitle.value = todo.title;
         this.selectDate.value = todo.date;
         this.inputDescription.value = todo.description;
         this.todoDetails.classList.add("active"); // Open the details bar
-        this.addTodoButton.classList.add("active"); 
+        this.addTodoButton.classList.add("active");
         this.updateTodoButton.classList.remove("active");
+        window.scrollTo({
+            top:0,
+            behavior: 'smooth'
+        })
     }
-
 
     addUpdatedTodoToFirebase(todoKey) {
         let listener = () => {
             firebase.database().ref(`users/${this.currentUser}`).child("todos").child(todoKey).update(this.allValues())
-            .then(() => {
-                this.updateTodoButton.removeEventListener("click", listener);
-                this.updateTodoButton.classList.add("active");
-                this.addTodoButton.classList.remove("active");  
-                this.clearInputs();              
-            });
-          }
-          this.updateTodoButton.addEventListener("click", listener);
+                .then(() => {
+                    this.updateTodoButton.removeEventListener("click", listener);
+                    this.updateTodoButton.classList.add("active");
+                    this.addTodoButton.classList.remove("active");
+                    this.clearInputs();
+                    this.showAlerts("info", "todo updated!");
+                });
+        }
+        this.updateTodoButton.addEventListener("click", listener);
     }
-    
-    updateTodoFromFirebase() {
+
+    updateTodoFromFirebase() {
         const updateTodoButtons = document.querySelectorAll(".update-todo");
         updateTodoButtons.forEach(button => {
             button.addEventListener("click", () => {
@@ -131,28 +167,28 @@ export class MainTodo {
         })
     }
 
-    deleteTodoFromFirebase(){ 
+    deleteTodoFromFirebase() {
         const deleteTodoButtons = document.querySelectorAll(".delete-todo");
         deleteTodoButtons.forEach(button => {
             button.addEventListener("click", () => {
                 let todoKey = button.dataset.key;
-                firebase.database().ref(`users/${this.currentUser}`).child("todos").child(todoKey).remove()
-                .then(() => {
-                    const todoItem = document.querySelectorAll(".todo-item");
-                    console.log(todoItem)
-                })
+                let item = button.parentElement.parentElement;
+                this.animateCSS(item, 'backOutUp');
+                setTimeout(() => {
+                    firebase.database().ref(`users/${this.currentUser}`).child("todos").child(todoKey).remove()
+                }, 1000);
             })
         });
     }
 
-    getAllTodosFromFirebase(){
+    getAllTodosFromFirebase() {
         let todoRef = firebase.database().ref("users/" + this.currentUser).child("todos");
         todoRef.on("value", snapShot => {
             this.clearInputs(); // This functions clear all inputs
             this.todoBottom.innerHTML = "";
             snapShot.forEach(item => {
                 let todoKey = item.key;
-                this.addTodoToUI(item.val().title, item.val().description, item.val().action, item.val().date, todoKey)            
+                this.addTodoToUI(item.val().title, item.val().description, item.val().action, item.val().date, todoKey)
             });
             //this function should work here, because we can select the button after the html is dynamically generated
             this.deleteTodoFromFirebase();
@@ -163,7 +199,10 @@ export class MainTodo {
     addTodosToFirebase() {
         this.addTodoButton.addEventListener("click", () => {
             if (this.checkInputEmpty()) {
-                firebase.database().ref("/users").child(this.currentUser).child("todos").push(this.allValues())                
+                firebase.database().ref("/users").child(this.currentUser).child("todos").push(this.allValues())
+                .then(() => {
+                    this.showAlerts("success", "todo added!")
+                })
             }
         })
     }
@@ -179,14 +218,14 @@ export class MainTodo {
     }
 
     //when the signOut button is pressed
-    logoutFirebase(){
+    logoutFirebase() {
         this.logoutButton.addEventListener("click", () => {
             firebase.auth().signOut()
-            .then(() => {
-                window.location.href = "login.html"
-            }).catch((err) => {
-                console.log(err);
-            });
+                .then(() => {
+                    window.location.href = "login.html"
+                }).catch((err) => {
+                    console.log(err);
+                });
         })
     }
 }
