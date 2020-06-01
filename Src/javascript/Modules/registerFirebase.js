@@ -18,6 +18,7 @@ export class RegisterFirebase {
 
     registerFirebase() {
             this.registerButton.addEventListener("click", () => {
+                if (this.password.value === this.password2.value) {
                 firebase.auth().createUserWithEmailAndPassword(this.email.value, this.password.value)
                     // if success the create account process
                     .then(() => {
@@ -28,6 +29,7 @@ export class RegisterFirebase {
                         })
                     })
                     .catch(err => console.log(err))
+                }
             })
     };
 }
