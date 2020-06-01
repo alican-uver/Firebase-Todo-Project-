@@ -1,0 +1,13 @@
+@mixin transition($for, $time, $type) {
+    transition: {
+        property: $for;
+        duration: #{$time}s;
+        timing-function: $type;
+    }
+}
+
+@mixin flexCenter() {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}

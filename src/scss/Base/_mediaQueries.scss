@@ -1,0 +1,28 @@
+@media #{$phone} {
+
+    .todo-container {
+        width: 90% !important;
+        .todo-center{
+            width: 100%;
+        }
+    }
+    // Login and Register Form
+    .form-container{
+        width: 95% !important;
+    }
+    
+    ::placeholder{
+        font-size: 13px;
+    }
+}
+
+@media #{$tablet} {
+    .todo-container {
+        width: 85%;
+    }
+
+    // Login and Register Form
+    .form-container{
+        width: 60%;
+    }
+}
