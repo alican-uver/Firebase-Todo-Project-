@@ -1,15 +1,9 @@
 @media #{$phone} {
 
-    html {
-        font-size: 13px;
-    }
     .todo-container {
-        width: 95% !important;
+        width: 90% !important;
         .todo-center{
             width: 100%;
-        }
-        .todoTitleAndDescription{
-            padding: 0 6px;
         }
     }
     // Login and Register Form
@@ -31,6 +25,4 @@
     .form-container{
         width: 60%;
     }
-
-
 }
