@@ -54,7 +54,7 @@ export class MainTodo {
         setTimeout(() => {
             alertDiv.classList.add("show");
             alertDiv.innerHTML = "";
-        }, 1500);
+        }, 1700);
     }
 
     // UI Functions

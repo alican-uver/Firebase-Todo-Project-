@@ -4,9 +4,9 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
-      index: ["@babel/polyfill", "./src/javascript/Modules/index.js"],
-      register: ["./src/javascript/Modules/register.js"],
-      login: ["./src/javascript/Modules/login.js"]
+      index: ["@babel/polyfill", "./Src/javascript/Modules/index.js"],
+      register: ["./Src/javascript/Modules/register.js"],
+      login: ["./Src/javascript/Modules/login.js"]
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -57,7 +57,7 @@ module.exports = {
     ],
     devServer: {
         port: 3200,
-        contentBase: path.resolve(__dirname, './src/Javascript/Modules'),
+        contentBase: path.resolve(__dirname, './Src/Javascript/Modules'),
         compress: true,
         watchContentBase: true,
     },
