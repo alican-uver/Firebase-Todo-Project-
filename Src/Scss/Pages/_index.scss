@@ -2,6 +2,7 @@
     width: 60%;
     margin: 20px auto;
     overflow: hidden;
+    position: relative;
     .todo-up{
         color: $color-navyBlue;
         display: flex;
@@ -61,7 +62,7 @@
             color:$color-white;
         }
 
-        .todo-item{
+        &-item{
             display: flex;
             flex-direction: column;
             width: 30%;
@@ -111,13 +112,13 @@
                 color:$color-red;
                 font-weight: bold;
                 font-size: 1.1rem;
-                flex-basis: 100px;
+                flex-basis: 20%;
             }
             &-date{
                 color:$color-red;
                 font-weight: bold;
                 font-size: 1.1rem;
-                flex-basis: 100px;
+                flex-basis: 20%;
                 text-align: right;
             }
             // Edit and Delete Todos Icons
@@ -145,7 +146,7 @@
             .todoTitleAndDescription{
                 display: flex;
                 flex-flow: column wrap;
-                flex-basis: 600px;
+                flex-basis: 70%;
                 align-items: center;
                 text-align: center;
                 p{
@@ -163,7 +164,24 @@
                 }
             }
         }
-        
+    }
+
+    .alert{
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: .3s ease all;
+        span{
+            padding: 7px 20px;
+            border-radius: 5px;
+            color:$color-white;
+            box-shadow: $box-shadow;
+            text-transform: capitalize;
+        }
+        &.show{
+            top:-10%;
+        }
     }
 }
 
@@ -171,3 +189,4 @@
 .todo-item:hover .todo-item-icons{
     visibility: visible;
 }
+
