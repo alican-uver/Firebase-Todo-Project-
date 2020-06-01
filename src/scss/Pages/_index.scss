@@ -172,8 +172,9 @@
         left: 50%;
         transform: translateX(-50%);
         transition: .3s ease all;
+        display: flex;
         span{
-            padding: 7px 20px;
+            padding: 0 5px;
             border-radius: 5px;
             color:$color-white;
             box-shadow: $box-shadow;
